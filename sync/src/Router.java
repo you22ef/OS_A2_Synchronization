@@ -1,16 +1,17 @@
 public class Router 
 {
-    public int size = 2;
+    public int size;
     public Router(int a)
     {
-        //size = a;
+        size = a;
     }
     public int connections = 1;
-    Semaphore loged_in = new Semaphore(size);
+    Semaphore loged_in = new Semaphore();
     Semaphore loged_out = new Semaphore();
     
     public void login()
     {
+        loged_in.setValue(size);
         System.out.println(size);
         loged_in.P();
         Thread currentThread = Thread.currentThread();

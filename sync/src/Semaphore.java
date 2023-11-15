@@ -1,10 +1,12 @@
 public class Semaphore {
-    public int value = 0 ;
-    Router router;
+    public int value ;
     public Semaphore() { value = 0 ;}
     public Semaphore(int initial) 
     {
         value = initial ;
+    }
+    public void setValue(int x){
+        value =x ;
     }
     public synchronized void P() 
     {
@@ -20,7 +22,9 @@ public class Semaphore {
                 System.out.println(tokens[0] + " " + "(" + tokens[1] + ")" + "arrived and waiting" );
                 wait() ;
             } 
-            catch( InterruptedException e ) { }
+            catch( InterruptedException e ) {
+                System.out.println("ERROR IN SEMAPHORE P()");
+            }
         }
         
     }

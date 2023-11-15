@@ -44,7 +44,7 @@ public class Network {
         
         a.SetData();
         int numThreads = a.getTotalDevicesNum();
-        Device threadArray[] = new Device[numThreads];
+        Device[] threadArray = new Device[numThreads];
         Router router = new Router(a.getMaxConn());
         //router.SetSize(a.getMaxConn());
         for (int i = 0; i < numThreads; i++) 
