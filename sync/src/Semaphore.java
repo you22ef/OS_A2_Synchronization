@@ -8,25 +8,26 @@ public class Semaphore {
     public void setValue(int x){
         value =x ;
     }
-    public synchronized void P() 
-    {
-        //System.out.println("value : "+value);
-        value-- ;
-        if (value < 0)
-        {
-            try 
-            {
+    public synchronized void P() { //change
+        value--;
+        if (value < 0) {
+            try {
                 Thread currentThread = Thread.currentThread();
                 String threadName = currentThread.getName();
                 String[] tokens = threadName.split(" ");
-                System.out.println(tokens[0] + " " + "(" + tokens[1] + ")" + "arrived and waiting" );
-                wait() ;
-            } 
-            catch( InterruptedException e ) {
+
+                // Check if the array has at least two elements before accessing index 1
+                if (tokens.length >= 2) {
+                    System.out.println(tokens[0] + " " + "(" + tokens[1] + ")" + " arrived and waiting");
+                } else {
+                    System.out.println("Unexpected thread name format: " + threadName);
+                }
+
+                wait();
+            } catch (InterruptedException e) {
                 System.out.println("ERROR IN SEMAPHORE P()");
             }
         }
-        
     }
 
     public synchronized void V() 
