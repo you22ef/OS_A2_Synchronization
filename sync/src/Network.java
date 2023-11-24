@@ -37,21 +37,20 @@ public class Network {
     {
         return N;
     }
-    public static void main(String[] args) throws Exception 
-    {
-        
+    public static void main(String[] args) throws Exception {
         Network a = new Network();
-        
+
         a.SetData();
         int numThreads = a.getTotalDevicesNum();
         Device[] threadArray = new Device[numThreads];
         Router router = new Router(a.getMaxConn());
-        //router.SetSize(a.getMaxConn());
-        for (int i = 0; i < numThreads; i++) 
-        {
-            threadArray[i] = new Device(router);
-            threadArray[i].setName(a.getTotalDevicesNames()[i]);
+
+        String[] deviceNames = a.getTotalDevicesNames(); //  device names
+
+        for (int i = 0; i < numThreads; i++) {
+            threadArray[i] = new Device(router, deviceNames[i]); // Pass device name
         }
+
         for (Thread thread : threadArray) {
             thread.start();
         }
